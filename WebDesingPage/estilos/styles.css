@@ -1,0 +1,220 @@
+:root{
+    --oscuro: #212121;
+    --primario: #ffc107;
+    --secundario: #0097a7;
+    --ancho-p: 1200px;
+    --gris: #757575;
+}
+
+html {
+    box-sizing: border-box;
+    min-height: 100%;/*Es para que se vea parejo el degradado del color puesto en el body*/
+    font-size: 62.5%;
+    scroll-snap-type: y mandatory; /*activacion del efecto scroll*/
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+  
+body{
+    font-family: 'Krub', sans-serif;
+    min-height: 100%;
+    background-image: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
+    font-size: 1.6rem;
+}
+h1, h2, h3{
+    margin: 0;
+}
+h2, h3{
+    text-align: center;
+}
+h3{
+    color: var(--secundario);
+    font-weight: 400;
+    font-size: 3rem;
+}
+p{
+    font-size: 1.3rem;
+    line-height: 2;
+    text-align: justify;
+}
+.site-header{
+    background-color: white;
+}
+.site-header nav{ /*mobile*/
+    max-width: var(--ancho-p);
+    margin: 0 auto;
+    padding: 1rem 0;
+
+    /*Comienza flex box del header*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 768px) { /*desktop*/ 
+    .site-header nav{
+        flex-direction: row; /*direccion horizontal = row*/
+        justify-content: space-between;
+    }
+}
+.site-header nav a{
+    color: var(--oscuro);
+    font-size: 2.2rem;
+    text-decoration: none;
+}
+
+.site-header nav a:last-of-type{
+    margin-bottom: 0;
+}
+@media (min-width: 768px) {
+    .site-header nav{
+        margin-bottom: 0;
+    }
+}
+
+.hero{
+    height: 45rem;
+    background-image: url(../img/hero.jpg);
+    position: relative;
+
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+.hero::after{ /*oscurese un poco la imagen del hero, la transparencia del color negro seleccionado es el .7*/
+    content:'';
+    background-color: rgba(0,0,0, .7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.contenedor-hero{
+    color:white;
+    position: relative; /*mueve el contenido del hero para el frente de la pelicula negra (after) es como las ediciones de photoshop o un sandwich*/
+    z-index: 1; /*capas a llevar hacia arriba*/
+    text-align: center;
+}
+.contenedor-hero i{
+    font-size: 5rem;
+    color: var(--primario);
+}
+
+.boton{
+    background-color: var(--secundario);
+    padding: 1rem 5rem;
+    display: inline-block;
+    margin-top: 1rem;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2.2rem;
+    border-radius: .5rem;
+    border: none; 
+}
+.boton:hover {
+    cursor: pointer;
+}
+.contenedor{
+    max-width: var(--ancho-p);
+    margin: 3rem auto; /*margen al main//contenedor*/
+    background-color: white;
+    padding: 3rem;
+    border-radius: 1rem;
+    -webkit-box-shadow: 0px 10px 21px 0px rgba(0,0,0,0.74);
+    -moz-box-shadow: 0px 10px 21px 0px rgba(0,0,0,0.74);
+    box-shadow: 0px 10px 21px 0px rgba(0,0,0,0.74); /*opacidad del contenedor por abajo*/
+}
+
+.contenedor-servicios{
+    margin-top: 3rem;
+}
+.servicios,
+.site-header,
+.contacto{
+    scroll-snap-align: center;/*que el scroll este alineado*/
+    scroll-snap-stop: always; /*obliga al scroll a detenerse en el inicio del main*/
+}
+@media (min-width: 768px) {
+    .contenedor-servicios{
+        display: flex;
+        justify-content: space-between;
+    }
+    .servicio{
+        flex: 0 0 calc(33.3% - 1rem);
+    }
+}
+.servicio{ /*centra iconos de la manera flex*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.iconos{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--primario);
+    display: flex; /*recuerda que iconos es clase padre de ellos*/
+    justify-content: space-evenly; /*centra y separacion de iconos*/
+    align-items: center;
+    margin-top: 3rem;
+}
+.iconos{
+    font-size: 3rem;
+}
+
+form{
+    background-color: var(--gris);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 3rem;
+}
+form legend {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--primario);
+    margin: 3rem 0;
+}
+@media (min-width: 768px) {
+    .form{
+        max-width: 800px;
+        margin: 3rem auto;
+    }
+    .contenedor-campos{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap; 
+    }
+    .campo{
+        flex: 0 0 calc(50% - 1rem);
+    }
+}
+.campo{
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: center;
+}
+.campo label{
+    flex: 0 0 90px; /*le da a los labels una base y hace que se alinien*/ 
+    padding-top: .5rem;
+    color: white;
+}
+.campo input{ 
+    flex: 1;
+    height: 4rem;
+}
+.campo textarea{
+    flex: 1; /*crece SOLO dentro de su contenedor*/
+    height: 6rem;
+}
+.w-100{
+    flex: 0 0 100%;
+}
+.enviar{
+    display: flex;
+    justify-content: flex-end;
+}
